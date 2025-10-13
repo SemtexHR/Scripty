@@ -33,12 +33,10 @@ const handleLoadPS1 = async () => {
   return end;
 };
 
-export default function Form({ isVisible}) {
+export default function Form({ isVisible }) {
   const addItem = useListStore((state) => state.addItem);
   const [selectedTags, setSelectedTags] = useState([]);
   const tags = useListStore((state) => state.tags);
-
-  
 
   const handleTagChange = (e) => {
     const options = Array.from(e.target.options);
@@ -68,14 +66,11 @@ export default function Form({ isVisible}) {
 
   return (
     <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 100, opacity: 0 }}
-      className="w-4/20 flex justify-center flex-col items-center gap-y-10  h-screen overflow-y-auto  bg-form mt-7.5"
+      initial={{ x: -100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -100, opacity: 0 }}
+      className=" w-6/20 xl:w-3/20 xl:h-4/10 flex z-10 justify-center absolute  flex-col items-center rad gap-y-10  overflow-y-auto p-5  bg-form ml-12 mt-20"
     >
-      <h1 className="block text-text text-3xl font-doto font-bold mt-10">
-        Add Script
-      </h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center w-full h-full"
@@ -90,10 +85,10 @@ export default function Form({ isVisible}) {
             maxLength={12}
             placeholder="IP Config"
             required
-            className="bg-card text-text outline-none  w-2/3 h-10 rad drop-shadow-xl/25 p-2 "
+            className="bg-main2 text-text outline-none w-2/3 h-10 rad  p-2 "
           />
         </div>
-        <div className="flex flex-col items-center w-full space-y-4 mt-5 rounded-sm drop-shadow-xl/25">
+        <div className="flex flex-col items-center w-full space-y-4 mt-5 rounded-sm">
           <label htmlFor="tags" className=" text-text" autoComplete="off">
             Select Tags
           </label>
@@ -102,7 +97,7 @@ export default function Form({ isVisible}) {
             multiple
             value={selectedTags}
             onChange={handleTagChange}
-            className="bg-card text-text outline-none w-2/3 h-24 rounded-sm drop-shadow-xl/25"
+            className="bg-main2 p-2 text-text outline-none w-5/6 h-30 rounded-sm"
           >
             {tags.map((tag) => (
               <option key={tag} value={tag}>
@@ -114,7 +109,7 @@ export default function Form({ isVisible}) {
 
         <button
           type="submit"
-          className="bg-acc border-none rad w-2/3 h-10 text-[15px] drop-shadow-xl/25 mt-auto mb-20 text-white hover:bg-white hover:text-acc lg:text-[17px] active:translate-y-1 transition-all focus:outline-none"
+          className="bg-acc border-none rad w-2/3 h-10 text-[15px] mt-auto mb-5  text-white hover:bg-white hover:text-acc lg:text-[17px] active:translate-y-1 transition-all focus:outline-none"
         >
           Add File
         </button>

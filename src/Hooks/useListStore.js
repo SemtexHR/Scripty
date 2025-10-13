@@ -1,14 +1,12 @@
 import { create } from "zustand";
-import { persist,createJSONStorage } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { writeTextFile, readTextFile, exists } from "@tauri-apps/plugin-fs";
-import { resolveResource } from "@tauri-apps/api/path";
-import { filter } from "motion/react-client";
-
+import { appDataDir } from "@tauri-apps/api/path";
 
 const getFileStorePath = async () => {
-    const exedir = await resolveResource('.');
-    return `${exedir}/scriptStorage.json`;
-}
+  const dir = await appDataDir();
+  return `${dir}scriptStorage.json`;
+};
 
 const fileStorage = {
   getItem: async (_) => {
@@ -22,62 +20,68 @@ const fileStorage = {
   },
   removeItem: async (_) => {
     const path = await getFileStorePath();
-    await writeTextFile(path, '');
+    await writeTextFile(path, "");
   },
 };
 
+export const useListStore = create(
+  persist(
+    (set, get) => ({
+      items: [],
 
+      tags: ["Routine", "SYSTEM", "Check", "User", "Admin", "Archive"],
 
-export const useListStore = create(persist((set,get) => ({
-    items: [],
+      selectedItem: null,
 
-    tags: ["Routine", "SYSTEM", "Check", "User", "Admin","Archive"],
+      filterTag: null,
 
-    selectedItem: null,
+      addItem: (item) =>
+        set((state) => ({
+          items: [...state.items, item],
+        })),
 
-    filterTag: null,
+      addTag: (tag) => {
+        set((state) => ({
+          tags: state.tags.includes(tag) ? state.tags : [...state.tags, tag],
+        }));
+      },
 
-    addItem: (item) => set((state) => ({
-        items: [...state.items, item]
-    })),
+      removeItem: (id) =>
+        set((state) => ({
+          items: state.items.filter((item) => item.id !== id),
+        })),
 
-    addTag: (tag) => {
-      set((state) => ({
-      tags: state.tags.includes(tag) ? state.tags : [...state.tags, tag]
-    }))},
+      selectItem: (item) => set({ selectedItem: item }),
 
-    removeItem: (id) => set((state) => ({
-        items: state.items.filter((item) => item.id !== id)
-    })),
+      clearSelection: () => set({ selectedItem: null }),
 
-    selectItem: (item) => set({selectedItem: item }),
+      setItems: (items) => set({ items }),
 
-    clearSelection: () => set({selectedItem: null}),
-    
-    setItems: (items) => set({items}),
+      setFilterTag: (tag) => {
+        set({ filterTag: tag });
+      },
 
-    setFilterTag: (tag) => {
-    set({ filterTag: tag });
-  },
-
-  getFilteredItems: () => {
-    const { items, filterTag } = get();
-    if(filterTag === "Archive"){
-      return items.filter((item) => item.tags.includes(filterTag));
-    } else if (filterTag){
-      return items.filter((item) => item.tags.includes(filterTag) && !item.tags.includes("Archive"))
-    } else {
-      return items.filter((item) => !item.tags.includes("Archive"));
-    }
-  },
-}),
+      getFilteredItems: () => {
+        const { items, filterTag } = get();
+        if (filterTag === "Archive") {
+          return items.filter((item) => item.tags.includes(filterTag));
+        } else if (filterTag) {
+          return items.filter(
+            (item) =>
+              item.tags.includes(filterTag) && !item.tags.includes("Archive"),
+          );
+        } else {
+          return items.filter((item) => !item.tags.includes("Archive"));
+        }
+      },
+    }),
     {
-        name: 'scriptStorage',
-        partialize: (state) => ({
-            items: state.items,
-            tags: state.tags
-        }),
-        storage: createJSONStorage(() => fileStorage),
-    }
-
-)); 
+      name: "scriptStorage",
+      partialize: (state) => ({
+        items: state.items,
+        tags: state.tags,
+      }),
+      storage: createJSONStorage(() => fileStorage),
+    },
+  ),
+);

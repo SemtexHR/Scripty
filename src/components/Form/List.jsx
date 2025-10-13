@@ -8,7 +8,7 @@ function ListItem({ item, onSelect, visible, setVisible }) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      className="bg-card text-text w-62 h-10 flex items-center 2xl:w-87 2xl:h-13 hover:bg-acc hover:text-white active:translate-y-1 transition-all cursor-pointer rad ml-5 drop-shadow-xl/25"
+      className="bg-main text-text w-62 h-10 flex items-center 2xl:w-87 2xl:h-13 hover:bg-acc hover:text-white active:translate-y-1 transition-all cursor-pointer rad ml-5 "
       onClick={() => {
         onSelect(item);
         setVisible(true);

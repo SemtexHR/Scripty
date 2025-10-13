@@ -1,80 +1,58 @@
 @import "tailwindcss";
-@import '@fontsource-variable/doto';
+@import "@fontsource-variable/doto";
 
-@layer components{
-    .rad{
+@layer components {
+    .rad {
         border-radius: var(--radius);
     }
-
 }
 
-
-@theme{
-    --color-main1: var(--main1);
+@theme {
+    --color-main: var(--main);
     --color-main2: var(--main2);
-    --color-card: var(--card);
+    --color-background: var(--back);
     --color-acc: var(--acc);
     --color-text: var(--text);
-    --color-toptext: var(--toptext);
-    --color-preview: var(--preview);
-    --color-background: var(--back);
     --color-form: var(--form);
-    --font-doto: 'Doto Variable', sans-serif;
+    --font-doto: "Doto Variable";
+    --font-JetBrainsMono: "JetBrains Mono Variable", monospace;
 }
 
-@layer base{
-
-    :root{
-        --main1: #94ADFF;
-        --main2: #B9F0FF;
-        --card: #ffffff;
-        --acc: #B194FF;
-        --text: #3C3C3C;
-        --toptext: #ffffff;
-        --preview: #E2E9FF;
-        --form: #ffffff;
-        --back: #ffffff;
-        --radius: 20px 20px 20px 20px;
-    }
-
-
-    [data-theme="dark"]{
-        --main1: #0029B1;
-        --main2: #0083A7;
-        --card: #454545;
-        --acc: #603AC5;
-        --text: #F9F9F9;
-        --toptext: #ffffff;
-        --preview: #595959;
-        --form: #3E3E3E;
-        --back: #000000;
-        --radius: 20px 20px 20px 20px;
+@layer base {
+    :root {
+        --main: #677397;
+        --main2: #5a6380;
+        --back: #515a77;
+        --acc: #857cbf;
+        --form: #363c4e;
+        --text: #ffffff;
+        --radius: 15px 15px 15px 15px;
     }
 }
 
-html,body{
+html,
+body {
     overflow: hidden;
     position: fixed;
     width: 100vw;
     height: 100vh;
-    font-family: 'JetBrains Mono Variable',monospace;
+    font-family: "JetBrains Mono Variable", monospace;
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
+    width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
 }
 
-
 ::-webkit-scrollbar-thumb {
-  background: white;
-  transition: all 0.3s ease-in-out;
+    background: white;
+    transition: all 0.3s ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--acc);
-  transition: all 0.3s ease-in-out;
+    background: white;
+    transition: all 0.3s ease-in-out;
 }

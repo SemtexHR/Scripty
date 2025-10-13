@@ -43,59 +43,59 @@ export default function DetailView({ setIsVisible }) {
 
   return (
     <>
-        <motion.div
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: 100, opacity: 0 }}
-          className="flex flex-col h-screen w-3/5 bg-gradient-to-b from-main1 to-main2 ml-auto"
-        >
-          <div className="h-1/10 flex items-center justify-between gap-x-17 lg:gap-x-25 xl:gap-x-90 mt-7.5">
-            <div className="flex justify-evenly items-center gap-x-10">
-              <button
-                className="flex justify-center items-center text-white bg-transparent drop-shadow-xl/25 rad w-10 h-5 ml-5 lg:text-xl lg:w-10 lg:h-10 hover:bg-acc active:translate-y-1  transition-all focus:outline-none cursor-pointer"
-                onClick={() => setIsVisible(false)}
-              >
-                <XMarkIcon className="h-5 lg:h-8" />
-              </button>
-              <h1 className="text-white font-bold text-2xl font-doto">
-                {selectedItem ? selectedItem.title : "File has No name"}
-              </h1>
-            </div>
-            <div className="flex justify-evenly items-center gap-x-3 lg:gap-x-10">
-              <button
-                className="flex justify-center items-center text-white bg-transparent drop-shadow-xl/25 rad  w-10 h-5 lg:text-xl lg:w-10 lg:h-10 hover:bg-acc active:translate-y-1 transition-all focus:outline-none cursor-pointer"
-                onClick={() => deleteItem()}
-              >
-                <TrashIcon className="h-5 lg:h-8 " />
-              </button>
-              <select
-                name="rt"
-                id="rt"
-                value={runtime}
-                onChange={(evt) => setRuntime(evt.target.value)}
-                className="text-text bg-card w-20 h-5 2xl:text-xl 2xl:w-30 2xl:h-8 focus:outline-none text-center drop-shadow-xl/25 rad"
-              >
-                <option value="3">User</option>
-                <option value="2">Admin</option>
-                  {/*<option value="1">System</option>*/}
-              </select>
-              <button
-                className="text-white bg-acc rad w-15 h-7 2xl:text-xl 2xl:w-43 2xl:h-11.25 hover:bg-white hover:text-acc transition-all  active:translate-y-1 focus:outline-none mr-5 drop-shadow-xl/25 cursor-pointer"
-                onClick={() => chruntime(runtime)}
-              >
-                Run {">"}
-              </button>
-            </div>
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: 100, opacity: 0 }}
+        className="flex flex-col h-screen w-3/5 bg-main2 ml-auto"
+      >
+        <div className="h-1/10 flex items-center justify-between gap-x-17 lg:gap-x-25 xl:gap-x-80 mt-7.5">
+          <div className="flex justify-evenly items-center gap-x-10">
+            <button
+              className="flex justify-center items-center text-text bg-transparent rad w-10 h-5 ml-5 lg:text-xl lg:w-10 lg:h-10 hover:bg-acc active:translate-y-1  transition-all focus:outline-none cursor-pointer"
+              onClick={() => setIsVisible(false)}
+            >
+              <XMarkIcon className="h-5 lg:h-8" />
+            </button>
+            <h1 className="text-text font-normal text-2xl">
+              {selectedItem ? selectedItem.title : "File has No name"}
+            </h1>
           </div>
+          <div className="flex justify-evenly items-center gap-x-3 lg:gap-x-10">
+            <button
+              className="flex justify-center items-center text-text bg-transparent  rad  w-10 h-5 lg:text-xl lg:w-10 lg:h-10 hover:bg-acc active:translate-y-1 transition-all focus:outline-none cursor-pointer"
+              onClick={() => deleteItem()}
+            >
+              <TrashIcon className="h-5 lg:h-8 " />
+            </button>
+            <select
+              name="rt"
+              id="rt"
+              value={runtime}
+              onChange={(evt) => setRuntime(evt.target.value)}
+              className="text-text bg-main w-20 h-5 2xl:text-xl 2xl:w-30 2xl:h-8 focus:outline-none text-center rad"
+            >
+              <option value="3">User</option>
+              <option value="2">Admin</option>
+              {/*<option value="1">System</option>*/}
+            </select>
+            <button
+              className="text-text bg-acc rad w-15 h-7 2xl:text-xl 2xl:w-43 2xl:h-11.25 hover:bg-white hover:text-acc transition-all  active:translate-y-1 focus:outline-none mr-5  cursor-pointer"
+              onClick={() => chruntime(runtime)}
+            >
+              Run {">"}
+            </button>
+          </div>
+        </div>
 
-          <div className="bg-preview w-full h-9/10 mt-auto overflow-y-auto">
-            {selectedItem && (
-              <pre className="text-text p-4 text-[15px] 2xl:text-[20px]">
-                {selectedItem.content}
-              </pre>
-            )}
-          </div>
-        </motion.div>
+        <div className="bg-main/50 w-full h-9/10 mt-auto overflow-y-auto">
+          {selectedItem && (
+            <pre className="text-text p-4 text-[15px] 2xl:text-[20px]">
+              {selectedItem.content}
+            </pre>
+          )}
+        </div>
+      </motion.div>
     </>
   );
 }

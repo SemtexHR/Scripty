@@ -3,7 +3,7 @@
   "productName": "(S)cripty",
   "version": "0.8.1",
   "identifier": "com.scripty.app",
-  
+
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -39,8 +39,7 @@
     ],
     "windows": {
       "nsis": null
-    },
-    "resources": ["lib/syspwsh.exe","scriptStorage.json"]
+    }
   },
   "plugins": {
     "updater": {
