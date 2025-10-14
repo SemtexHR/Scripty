@@ -1,6 +1,6 @@
 [package]
 name = "scripty"
-version = "0.9.0"
+version = "0.9.1"
 description = "A Tauri App"
 authors = ["(N)ew_You"]
 edition = "2021"

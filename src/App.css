@@ -28,6 +28,9 @@
         --text: #ffffff;
         --radius: 15px 15px 15px 15px;
     }
+    [data-theme="brat"] {
+        --main: #000000;
+    }
 }
 
 html,
