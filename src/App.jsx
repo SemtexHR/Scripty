@@ -9,7 +9,8 @@ import { AnimatePresence } from "motion/react";
 import TopBar from "./components/TopBar.jsx";
 import { check } from "@tauri-apps/plugin-updater";
 import { relaunch } from "@tauri-apps/plugin-process";
-import { PlusIcon } from "@heroicons/react/16/solid";
+import { PlusIcon, CogIcon } from "@heroicons/react/16/solid";
+import Settings from "./components/Settings/Settings.jsx";
 
 const update = await check();
 if (update) {
@@ -46,7 +47,7 @@ function App() {
   const [prewOpen, setPrewOpen] = useState(false);
   const [popOpen, setPopOpen] = useState(false);
   const [tagOpen, setTagOpen] = useState(false);
-
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const setFilterTag = useListStore((state) => state.setFilterTag);
   const tags = useListStore((state) => state.tags);
   const removeItem = useListStore((state) => state.removeItem);
@@ -62,7 +63,7 @@ function App() {
                 setPopOpen(!popOpen);
                 setTagOpen(false);
               }}
-              className="bg-main2 text-text flex rounded-sm justify-center w-7 h-7"
+              className={`flex rounded-sm justify-center w-7 h-7 ${popOpen ? "bg-text text-main2" : "bg-main2 text-text"} transition-all`}
             >
               <PlusIcon className="w-5" />
             </button>
@@ -71,9 +72,15 @@ function App() {
                 setPopOpen(false);
                 setTagOpen(!tagOpen);
               }}
-              className="bg-main2 text-text flex rounded-sm justify-center w-7 h-7"
+              className={`flex rounded-sm justify-center w-7 h-7 ${tagOpen ? "bg-text text-main2" : "bg-main2 text-text"} transition-all`}
             >
               AD
+            </button>
+            <button
+              onClick={() => setSettingsOpen(true)}
+              className={`flex rounded-sm justify-center w-7 h-7 ${settingsOpen ? "bg-text text-main2" : "bg-main2 text-text"} transition-all`}
+            >
+              <CogIcon className="w-5" />
             </button>
           </div>
         </div>
@@ -85,6 +92,7 @@ function App() {
           {popOpen && <Form key={1} isVisible={setPopOpen} />}
           {tagOpen && <FormTag key={2} isVisible={setTagOpen} />}
           {prewOpen && <DetailView key={3} setIsVisible={setPrewOpen} />}
+          {settingsOpen && <Settings key={4} visible={setSettingsOpen} />}
         </AnimatePresence>
       </main>
     </>

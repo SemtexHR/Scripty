@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useListStore } from "../../Hooks/useListStore";
+import { useState } from "react";
 
 export default function FormTag({ isVisible }) {
   const addTag = useListStore((state) => state.addTag);
@@ -17,7 +18,7 @@ export default function FormTag({ isVisible }) {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: -100, opacity: 0 }}
-      className=" w-6/20 h-4/10 xl:w-3/20 xl:h-3/10 flex z-10 justify-center absolute  flex-col items-center rad gap-y-10  overflow-y-auto p-5  bg-form ml-12 mt-30"
+      className=" w-6/20 h-4/10 xl:w-3/20 xl:h-2/10 flex z-10 justify-center absolute  flex-col items-center rad gap-y-10  overflow-y-auto p-5  bg-form ml-12 mt-30"
     >
       <form
         onSubmit={handletagSubmit}

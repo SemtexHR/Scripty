@@ -1,15 +1,10 @@
 @import "tailwindcss";
 @import "@fontsource-variable/doto";
 
-@layer components {
-    .rad {
-        border-radius: var(--radius);
-    }
-}
-
 @theme {
     --color-main: var(--main);
     --color-main2: var(--main2);
+    --color-card: var(--card);
     --color-background: var(--back);
     --color-acc: var(--acc);
     --color-text: var(--text);
@@ -18,18 +13,44 @@
     --font-JetBrainsMono: "JetBrains Mono Variable", monospace;
 }
 
+@layer components {
+    .rad {
+        border-radius: var(--radius);
+    }
+}
+
 @layer base {
     :root {
         --main: #677397;
         --main2: #5a6380;
+        --card: #515a77;
         --back: #515a77;
         --acc: #857cbf;
         --form: #363c4e;
         --text: #ffffff;
         --radius: 15px 15px 15px 15px;
     }
+
+    [data-theme="light"] {
+        --main: #5b6687;
+        --main2: #94adff;
+        --card: #8795c2;
+        --back: #95a4d4;
+        --acc: #8795c2;
+        --form: #5b6687;
+        --text: #ffffff;
+        --radius: 15px 15px 15px 15px;
+    }
+
     [data-theme="brat"] {
         --main: #000000;
+        --main2: #8ace00;
+        --card: #78b300;
+        --back: #78b300;
+        --acc: #000000;
+        --form: #78b300;
+        --text: #ffffff;
+        --radius: 0px 0px 0px 0px;
     }
 }
 

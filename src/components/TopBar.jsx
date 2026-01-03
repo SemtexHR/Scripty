@@ -28,7 +28,7 @@ export default function TopBar() {
   return (
     <>
       <div
-        className=" fixed z-50 w-full h-10 px-3 flex items-center justify-between  bg-main/25 backdrop-blur-2xl"
+        className=" fixed z-50 w-full h-10 px-3 flex items-center justify-between  bg-main2 backdrop-blur-2xl"
         data-tauri-drag-region
       >
         <div className="flex mr-[150px] w-[100px] justify-evenly">

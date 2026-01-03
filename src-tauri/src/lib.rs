@@ -3,8 +3,8 @@ use std::fs::{self, File};
 use std::io::Write;
 use std::process::Command;
 
-// Embed syspwsh.exe inside the app (adjust path to your actual file)
-static SYSPWSH_EXE: &[u8] = include_bytes!("../lib/syspwsh.exe");
+//Embed syspwsh.exe inside the app (adjust path to your actual file)
+/*static SYSPWSH_EXE: &[u8] = include_bytes!("../lib/syspwsh.exe");
 
 // Extract embedded syspwsh.exe to temp directory
 fn extract_syspwsh() -> Result<std::path::PathBuf, String> {
@@ -18,7 +18,7 @@ fn extract_syspwsh() -> Result<std::path::PathBuf, String> {
     }
 
     Ok(temp_path)
-}
+}*/
 
 #[tauri::command]
 fn open_terminal(content: String) {
@@ -39,7 +39,7 @@ fn open_admin_terminal(content: String) {
         .expect("Failed to start elevated PowerShell");
 }
 
-#[tauri::command]
+/*#[tauri::command]
 fn run_sys_terminal(content: Option<String>) -> Result<(), String> {
     let exe_path = extract_syspwsh()?;
 
@@ -53,7 +53,7 @@ fn run_sys_terminal(content: Option<String>) -> Result<(), String> {
     }
 
     Ok(())
-}
+}*/
 
 #[tauri::command]
 fn read_ps1(path: String) -> Result<(String, String), String> {
@@ -74,7 +74,6 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             open_terminal,
             read_ps1,
-            run_sys_terminal,
             open_admin_terminal
         ])
         .run(tauri::generate_context!())
